@@ -1,41 +1,32 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const dotenv = require('dotenv');
+dotenv.config({ path:'.env' });
+const indexRouter = require('./routes/index');
+const weather = require('./routes/weather');
+const logger = require("./utils/logger");
 
-var app = express();
+const app = express();
+app.use(require('./utils/response/responseHandler'));
+// const httpServer = require('http').createServer(app);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/weather', weather);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+// Error handling middleware
+app.use((err, req, res, next) => {
+    logger.error(`${err.status || 500} - ${req.originalUrl} - ${req.method} - ${req.ip} ${err} ${err.stack}`);
+    res.status(err.status || 500).json({ error: err.message });
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    logger.info(`Server started on port ${port}`);
 });
 
-module.exports = app;

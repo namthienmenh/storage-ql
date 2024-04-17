@@ -1,16 +1,19 @@
 {
-  "name": "storage-ql",
+  "name": "weather-api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon app.js"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
+    "axios": "^1.4.0",
     "debug": "~2.6.9",
-    "ejs": "~2.6.1",
+    "dotenv": "^16.0.3",
     "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "express-limiter": "^1.6.1",
+    "nodemon": "^2.0.22",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1",
+    "winston-telegram": "^2.6.0"
   }
 }
