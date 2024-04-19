@@ -3,7 +3,7 @@
  * @description: exports all database related methods
  */
 const { Op } = require('sequelize');
-const models = require('../model');
+const models = require('../models/init-models');
 
 const OPERATORS = ['$and', '$or', '$like', '$in', '$eq', '$gt', '$lt', '$gte', '$lte', '$any', '$between'];
 

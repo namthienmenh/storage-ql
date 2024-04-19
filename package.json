@@ -11,7 +11,10 @@
     "dotenv": "^16.0.3",
     "express": "~4.16.1",
     "express-limiter": "^1.6.1",
+    "mysql2": "^3.9.5",
     "nodemon": "^2.0.22",
+    "sequelize": "^6.37.3",
+    "sequelize-auto": "^0.8.8",
     "winston": "^3.8.2",
     "winston-daily-rotate-file": "^4.7.1",
     "winston-telegram": "^2.6.0"
