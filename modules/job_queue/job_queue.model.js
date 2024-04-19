@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('job', {
+  return sequelize.define('job_queue', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -29,13 +29,27 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
+    priority: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
     run_at: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+      defaultValue: "2000-01-01 00:00:00"
+    },
+    createdAt: {
+      field: 'created_at',
+      type: Sequelize.DATE,
+    },
+    updatedAt: {
+      field: 'updated_at',
+      type: Sequelize.DATE,
+    },
   }, {
     sequelize,
-    tableName: 'job',
+    tableName: 'job_queue',
     timestamps: true,
     indexes: [
       {
@@ -51,6 +65,35 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "identifer" },
+        ]
+      },
+      {
+        name: "name",
+        using: "BTREE",
+        fields: [
+          { name: "name" },
+        ]
+      },
+      {
+        name: "priority",
+        using: "BTREE",
+        fields: [
+          { name: "priority" },
+        ]
+      },
+      {
+        name: "run_at",
+        using: "BTREE",
+        fields: [
+          { name: "run_at" },
+        ]
+      },
+      {
+        name: "name_run_at",
+        using: "BTREE",
+        fields: [
+          { name: "name" },
+          { name: "run_at" },
         ]
       },
     ]

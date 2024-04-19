@@ -17,6 +17,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/weather', weather);
+app.use('/job_queue', require('./modules/job_queue/job_queue.controller'));
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {
