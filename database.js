@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-var DataTypes = require("sequelize").DataTypes;
+
 
 var db = {}
 var pass = process.env.DB_PASSWORD
@@ -24,7 +24,6 @@ const sequelize = new Sequelize(
         // logging: false
     });
 
-db.JobQueue = require('modules/job_queue/job_queue.model')(sequelize, DataTypes);
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
