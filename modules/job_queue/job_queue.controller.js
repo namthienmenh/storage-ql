@@ -3,14 +3,14 @@ const router = express.Router();
 const Joi = require('joi');
 const validateRequest = require('middleware/validate-request');
 const jobQueueService = require('modules/job_queue/job_queue.service');
+const db = require("../../database");
 
 
 router.get('/', getAll);
 
 module.exports = router;
 
-function getAll(req, res, next) {
-    jobQueueService.getAll()
-        .then(jobs => res.json(jobs))
-        .catch(next);
+async function getAll(req, res, next) {
+    const jobs = await db.JobQueue.findAll();
+    res.success({data: jobs})
 }

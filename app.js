@@ -8,7 +8,7 @@ const weather = require('./routes/weather');
 const logger = require("./utils/logger");
 
 const app = express();
-app.use(require('./utils/response/responseHandler'));
+app.use(require('utils/response/responseHandler'));
 // const httpServer = require('http').createServer(app);
 
 app.use(express.json());

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('jobQueue', {
+  return sequelize.define('job_queue', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -42,16 +42,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: "2000-01-01 00:00:00"
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     }
   }, {
     sequelize,
     tableName: 'job_queue',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",

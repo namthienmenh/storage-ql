@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-
+var DataTypes = require("sequelize").DataTypes;
 
 var db = {}
 var pass = process.env.DB_PASSWORD
@@ -27,5 +27,7 @@ const sequelize = new Sequelize(
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
+db.DataTypes = DataTypes
+db.dataTypes = DataTypes
 
 module.exports = db

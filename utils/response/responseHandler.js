@@ -2,8 +2,8 @@
  * responseHandler.js
  * @description :: exports all handlers for response format.
  */
-const responseBody = require('./index');
-const responseCode = require('./responseCode');
+const responseBody = require('utils/response/index');
+const responseCode = require('utils/response/responseCode');
 
 /**
  *
